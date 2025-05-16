@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/db');
 
-// 首页展示 + 搜索 + 排序
+
 router.get('/', async (req, res) => {
   const sort = req.query.sort || 'date';
   const search = req.query.search || '';
