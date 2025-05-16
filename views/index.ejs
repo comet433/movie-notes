@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Movie Notes</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>My Movie Notes</h1>
+    <hr>
+
+    <div class="top-bar">
+      <div class="sort-links">
+        Sort by:
+        <a href="/movies?sort=date<%= search ? '&search=' + encodeURIComponent(search) : '' %>">Date</a> |
+        <a href="/movies?sort=rating<%= search ? '&search=' + encodeURIComponent(search) : '' %>">Rating</a>
+      </div>
+
+      <form action="/movies" method="GET" class="search-form">
+        <input type="text" name="search" placeholder="Search by title..." value="<%= typeof search !== 'undefined' ? search : '' %>" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    <% if (movies.length === 0) { %>
+      <p class="no-results">No movies found.</p>
+    <% } else { %>
+      <% movies.forEach(movie => { %>
+        <div class="movie-card">
+          <% if (movie.poster_url) { %>
+            <img src="<%= movie.poster_url %>" alt="Poster" class="poster-img">
+
+          <% } %>
+          <div class="movie-info">
+            <h3><%= movie.title %></h3>
+            <p><strong>Director:</strong> <%= movie.director %></p>
+            <p><strong>Rating:</strong> <%= movie.rating %>/10</p>
+            <p><strong>Watched:</strong> <%= movie.date_watched.toISOString().slice(0, 10) %></p>
+            <p><strong>Notes:</strong> <%= movie.notes %></p>
+            <div class="buttons">
+              <a href="/movies/<%= movie.id %>" class="btn details">Details</a>
+              <a href="/movies/<%= movie.id %>/edit" class="btn edit">Edit</a>
+              <form action="/movies/<%= movie.id %>/delete" method="POST" style="display:inline;">
+                <button class="btn delete">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= movie.title %> - Details</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container fade-in">
+    <h1><%= movie.title %></h1>
+    <hr>
+
+    <div class="movie-detail-card">
+      <% if (movie.poster_url) { %>
+        <img src="<%= movie.poster_url %>" alt="Poster">
+      <% } %>
+      <div class="movie-detail-info">
+        <p><strong>Director:</strong> <%= movie.director %></p>
+        <p><strong>Rating:</strong> <%= movie.rating %>/10</p>
+        <p><strong>Watched:</strong> <%= movie.date_watched.toISOString().slice(0, 10) %></p>
+        <p><strong>Notes:</strong> <%= movie.notes %></p>
+      </div>
+    </div>
+
+    <a href="/movies" class="btn back-button">← Back</a>
+  </div>
+</body>
+</html>

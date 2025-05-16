@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add New Movie</title>
+</head>
+<body>
+<h1>Add New Movie</h1>
+<form action="/movies" method="POST">
+<label>Title: <input name="title" required /></label><br/>
+<label>Director: <input name="director" /></label><br/>
+<label>Rating (1–10): <input type="number" name="rating" min="1" max="10" /></label><br/>
+<label>Date Watched: <input type="date" name="date_watched" /></label><br/>
+<label>Notes:<br/>
+<textarea name="notes" rows="4" cols="40"></textarea>
+</label><br/><br/>
+<button type="submit">Add Movie</button>
+</form>
+<a href="/movies">← Back to Movie List</a>
+</body>
+</html>
